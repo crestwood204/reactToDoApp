@@ -20,10 +20,15 @@ class ToDoApp extends React.Component {
       ]})
   }
 
+  addToDo(task) {
+    var newTodos = this.state.todos.concat(task);
+    this.setState({todos: newTodos});
+  }
+
   render() {
     return (
       <div>
-        <InputLine />
+        <InputLine submit={(todo) => this.addToDo(todo)}/>
         <ToDoList todos={this.state.todos}/>
       </div>
     )
