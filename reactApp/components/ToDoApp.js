@@ -20,16 +20,34 @@ class ToDoApp extends React.Component {
       ]})
   }
 
-  addToDo(task) {
+  addTodo(task) {
     var newTodos = this.state.todos.concat(task);
+    this.setState({todos: newTodos});
+  }
+
+  removeTodo(index) {
+    var newTodos = this.state.todos.slice(0, index).concat(this.state.todos.slice(index + 1));
+    this.setState({todos: newTodos});
+  }
+
+  toggleCompleted(index) {
+    var newTodos = this.state.todos.slice();
+    var todo = newTodos[index];
+    newTodos.splice(index, 1, {taskText: todo.taskText, completed: !todo.completed});
     this.setState({todos: newTodos});
   }
 
   render() {
     return (
       <div>
-        <InputLine submit={(todo) => this.addToDo(todo)}/>
-        <ToDoList todos={this.state.todos}/>
+        <InputLine 
+          submit={(todo) => this.addTodo(todo)}
+        />
+        <ToDoList 
+          toggleCompleted={(index) => this.toggleCompleted(index)} 
+          removeTodo={(index) => this.removeTodo(index)} 
+          todos={this.state.todos}
+        />
       </div>
     )
   }

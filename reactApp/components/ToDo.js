@@ -5,14 +5,22 @@ class ToDo extends React.Component {
     super(props);
   }
 
+  handleRemoveClick() {
+    this.props.removeTodo();
+  }
+
+  handleToggle() {
+    this.props.toggleCompleted();
+  }
+
   render() {
     return (
       <div>
         <li>
-          <button>
+          <button onClick={() => handleRemoveClick()}>
             X
           </button>
-          {(this.props.todo.completed) ? (<strike>{this.props.todo.taskText}</strike>): (<span> {this.props.todo.taskText} </span>)}
+          <span onClick={() => this.handleToggle()}> {(this.props.todo.completed) ? (<strike>{this.props.todo.taskText}</strike>): (<span> {this.props.todo.taskText}</span>)} </span>
         </li>
       </div>
     )
