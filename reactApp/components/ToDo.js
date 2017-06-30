@@ -17,6 +17,7 @@ class ToDo extends React.Component {
     return (
       <div>
         <li>
+          
           <button onClick={() => handleRemoveClick()}>
             X
           </button>
