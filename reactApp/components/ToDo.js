@@ -12,7 +12,7 @@ class ToDo extends React.Component {
           <button>
             X
           </button>
-          {this.props.todo}
+          {(this.props.todo.completed) ? (<strike>{this.props.todo.taskText}</strike>): (<span> {this.props.todo.taskText} </span>)}
         </li>
       </div>
     )
