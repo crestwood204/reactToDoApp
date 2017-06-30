@@ -4,13 +4,27 @@ import ToDoList from './ToDoList';
 class ToDoApp extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      todos: []
+    }
+  }
+
+  componentDidMount() {
+    this.setState({todos: [
+        {taskText: 'play lol', completed: false},
+        {taskText: 'update servers', completed: true},
+        {taskText: 'code all day', completed: false},
+        {taskText: 'talk to court', completed: false},
+        {taskText: 'call home', completed: true}
+      ]})
   }
 
   render() {
     return (
       <div>
         <InputLine />
-        <ToDoList />
+        <ToDoList todos={this.state.todos}/>
       </div>
     )
   }
