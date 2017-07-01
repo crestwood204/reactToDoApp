@@ -18,7 +18,7 @@ class ToDo extends React.Component {
       <div>
         <li>
           
-          <button onClick={() => handleRemoveClick()}>
+          <button onClick={() => this.handleRemoveClick()}>
             X
           </button>
           <span onClick={() => this.handleToggle()}> {(this.props.todo.completed) ? (<strike>{this.props.todo.taskText}</strike>): (<span> {this.props.todo.taskText}</span>)} </span>

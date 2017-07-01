@@ -1,6 +1,9 @@
 import React from 'react';
 import InputLine from './InputLine';
 import ToDoList from './ToDoList';
+import axios from 'axios';
+const dbUrl = "http://localhost:3000/db/add";
+
 class ToDoApp extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +24,16 @@ class ToDoApp extends React.Component {
   }
 
   addTodo(task) {
-    var newTodos = this.state.todos.concat(task);
-    this.setState({todos: newTodos});
+    var self = this;
+    axios.post(dbUrl, {task: task})
+      .then(function (response) {
+        // Do whatever you want with the request's response in here
+        self.setState({ todos: self.state.todos.concat({taskText: response.data.task, completed: response.data.completed})});
+      })
+      .catch(function (error) {
+        // Do whatever you want in the event of an error in here
+        console.log('error', error);
+      })
   }
 
   removeTodo(index) {
